@@ -16,7 +16,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="dapper" Version="1.50.2" />
-    <PackageReference Include="DotNetInit" Version="1.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="1.1.2" />
@@ -29,8 +28,5 @@
     <PackageReference Include="st2forget.console.utils" Version="1.0.2" />
     <PackageReference Include="st2forget.utils.commands" Version="1.0.10" />
     <PackageReference Include="st2forget.utils.sql" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="DotNetInit" Version="1.0.3" />
   </ItemGroup>
 </Project>

@@ -70,7 +70,7 @@ namespace st2forget.migrations
                     ? Executer.IsExecuted(migrationName)
                     : !Executer.IsExecuted(migrationName);
             }
-            var fileTs = long.Parse(file.Split('-')[0]);
+            var fileTs = long.Parse(migrationName.Split('-')[0]);
             var ticketTs = long.Parse(Ticket.Split('-')[0]);
             return IsDown
                 ? fileTs >= ticketTs && Executer.IsExecuted(migrationName)

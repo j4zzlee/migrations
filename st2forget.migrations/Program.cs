@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using st2forget.console.utils;
@@ -72,26 +73,8 @@ namespace st2forget.migrations
 
         private static IServiceProvider Init()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(
-                    AppContext.BaseDirectory.Substring(
-                        0,
-                        AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)
-                    )
-                )
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{environmentName}.json", true)
-                .AddEnvironmentVariables();
-            var configuration = builder.Build();
-
             var services = new ServiceCollection();
             services.AddOptions();
-            services.Configure<ConnectionSettings>(connectionSettings =>
-            {
-                connectionSettings.ConnectionString = configuration.GetConnectionString("MigrationDatabase");
-            });
-
             services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             services.AddScoped<IMigrationExecuter, SqlMigrationExecuter>();
             services.AddScoped<ICommand, MigrateUpCommand>();

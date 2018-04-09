@@ -4,6 +4,7 @@ namespace st2forget.migrations
 {
     public interface IMigrationExecuter: IDisposable
     {
+        IMigrationExecuter SetConnectionString(string conn);
         void Init();
         Migration GetLastExecutedMigration();
         bool IsExecuted(string migration);

@@ -45,9 +45,7 @@ namespace st2forget.migrations
             _version = ReadArgument<string>("version");
 
             _migrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(
-                AppContext.BaseDirectory.Substring(
-                    0,
-                    AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)),
+                AppContext.BaseDirectory,
                 "Migrations");
             _ticketName = ReadArgument<string>("ticket");
             return this;

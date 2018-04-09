@@ -84,7 +84,7 @@ namespace st2forget.utils.commands
                 {
                     continue;
                 }
-                var regStr = $"^((-{schema.ShortName})|(--{schema.Name}))([:=].*)?$";
+                var regStr = $"^((-{schema.ShortName})|(--{schema.Name}))[:=]?";
                 var regex = new Regex(regStr);
                 var result = Arguments.FirstOrDefault(a => regex.IsMatch(a));
                 if (!string.IsNullOrWhiteSpace(result))

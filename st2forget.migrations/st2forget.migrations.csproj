@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackageId>st2forget.migrations</PackageId>
     <AssemblyName>dotnet-migrations</AssemblyName>
-    <PackageVersion>2.0.2</PackageVersion>
+    <PackageVersion>2.0.3</PackageVersion>
     <Authors>Le Huu Hoang Gia</Authors>
     <Description>A command line tool for database migration (SQL Server) that uses raw sql.</Description>
     <Copyright>st2forget</Copyright>

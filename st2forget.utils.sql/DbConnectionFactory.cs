@@ -8,10 +8,14 @@ namespace st2forget.utils.sql
     {
         private IDbConnection _connection;
         private IDbTransaction _transaction;
-        public DbConnectionFactory(IOptions<ConnectionSettings> options)
+        public DbConnectionFactory()
         {
-            var settings = options.Value;
-            _connection = new SqlConnection(settings.ConnectionString);
+            
+        }
+
+        public void SetConnectionString(string conn)
+        {
+            _connection = new SqlConnection(conn);
         }
 
         public IDbConnection OpenConnection()

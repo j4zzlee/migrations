@@ -32,10 +32,10 @@ namespace st2forget.migrations.Tests
 
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddOptions();
-            _serviceCollection.Configure<ConnectionSettings>(connectionSettings =>
-            {
-                connectionSettings.ConnectionString = _configurationRoot.GetConnectionString("MigrationDatabase");
-            });
+            //_serviceCollection.Configure<ConnectionSettings>(connectionSettings =>
+            //{
+            //    connectionSettings.ConnectionString = _configurationRoot.GetConnectionString("MigrationDatabase");
+            //});
 
             _serviceCollection.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             _serviceCollection.AddScoped<GenerateMigrationCommand>();
@@ -80,9 +80,7 @@ namespace st2forget.migrations.Tests
         }
 
         public static string MigrationTestDirectory = Path.Combine(
-            AppContext.BaseDirectory.Substring(
-            0,
-            AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)),
+            AppContext.BaseDirectory,
             "GenerateMigrationTest");
 
         public static IEnumerable<object[]> ShouldCreateMigrationVersionDirectoryTestCases => new[]

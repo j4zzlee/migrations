@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using Microsoft.Extensions.Configuration;
 using st2forget.console.utils;
 using st2forget.utils.commands;
 
@@ -9,31 +10,46 @@ namespace st2forget.migrations
     public abstract class MigrationCommand : DapperCommand
     {
         protected string MigrationPath;
+        protected string ApplicationPath;
         protected string Ticket;
         protected bool IsDown;
         protected IMigrationExecuter Executer;
 
         protected MigrationCommand(IMigrationExecuter executer) : base()
         {
+            AddArgument("application-path", "a", "Path to application which contains appsettings.json", true);
             AddArgument("migration-path", "p", "Migration path");
             AddArgument("ticket", "t", "Ticket name", false, false, "\\d+\\-\\w+");
 
             Executer = executer;
-            Executer.Init();
         }
 
         protected override ICommand Filter()
         {
             Ticket = ReadArgument<string>("ticket");
+            ApplicationPath = ReadArgument<string>("application-path");
             MigrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(
-                                AppContext.BaseDirectory.Substring(
-                                    0,
-                                    AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)),
+                                AppContext.BaseDirectory,
                                 "Migrations");
             return this;
         }
+
+        protected virtual string GetConnectionString()
+        {
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(ApplicationPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{environmentName}.json", true)
+                .AddEnvironmentVariables();
+            var configuration = builder.Build();
+            return configuration.GetConnectionString("MigrationDatabase");
+        }
+
         protected override void OnExecute()
         {
+            Executer.SetConnectionString(GetConnectionString());
+            Executer.Init();
             var migrationFileManager = new MigrationFileManager();
             var hasMigration = false;
             // Find Name Versions

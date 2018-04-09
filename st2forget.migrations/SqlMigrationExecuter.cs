@@ -12,11 +12,9 @@ namespace st2forget.migrations
 {
     public class SqlMigrationExecuter: IMigrationExecuter
     {
-        private readonly IDbConnection _sqlConnection;
-        public SqlMigrationExecuter(IOptions<ConnectionSettings> settings)
+        private IDbConnection _sqlConnection;
+        public SqlMigrationExecuter()
         {
-            _sqlConnection = new SqlConnection(settings.Value.ConnectionString);
-            _sqlConnection.Open();
         }
 
         private bool IsInitialized()
@@ -158,6 +156,13 @@ WHERE [Name] = @Name
         public void Dispose()
         {
             _sqlConnection?.Close();
+        }
+
+        public IMigrationExecuter SetConnectionString(string conn)
+        {
+            _sqlConnection = new SqlConnection(conn);
+            _sqlConnection.Open();
+            return this;
         }
     }
 }

@@ -20,25 +20,8 @@ namespace st2forget.migrations.Tests
         private readonly IServiceCollection _serviceCollection;
         public MigrateTest()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(
-                    AppContext.BaseDirectory.Substring(
-                        0,
-                        AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)
-                    )
-                )
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{environmentName}.json", true)
-                .AddEnvironmentVariables();
-            _configurationRoot = builder.Build();
-
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddOptions();
-            _serviceCollection.Configure<ConnectionSettings>(connectionSettings =>
-            {
-                connectionSettings.ConnectionString = _configurationRoot.GetConnectionString("MigrationDatabase");
-            });
 
             _serviceCollection.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             _serviceCollection.AddScoped<IMigrationExecuter, SqlMigrationExecuter>();
@@ -50,9 +33,7 @@ namespace st2forget.migrations.Tests
         }
 
         public static string MigrationTestDirectory = Path.Combine(
-            AppContext.BaseDirectory.Substring(
-                0,
-                AppContext.BaseDirectory.IndexOf("bin", StringComparison.Ordinal)),
+            AppContext.BaseDirectory,
             "MigrationTestCases");
 
         public static IEnumerable<object[]> MigrateNoTicketSuccessTestCases => new[]

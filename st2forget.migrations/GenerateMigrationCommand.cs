@@ -13,7 +13,7 @@ namespace st2forget.migrations
         private string _version;
         private string _migrationPath;
         private string _ticketName;
-        public GenerateMigrationCommand(IServiceProvider container) : base(container)
+        public GenerateMigrationCommand() : base()
         {
             AddArgument("version", "v", "Version of project. e.g: 2.0.1", true, false, "^\\d+(\\.\\d+)*$");
             AddArgument("migration-path", "p", "Path of migration folder. e.g: C:\\Users\\consoto\\Migrations");

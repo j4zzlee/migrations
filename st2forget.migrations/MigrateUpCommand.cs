@@ -5,7 +5,7 @@ namespace st2forget.migrations
 {
     public class MigrateUpCommand : MigrationCommand
     {
-        public MigrateUpCommand(IServiceProvider container, IMigrationExecuter executer) : base(container, executer)
+        public MigrateUpCommand(IMigrationExecuter executer) : base(executer)
         {
             IsDown = false;
         }

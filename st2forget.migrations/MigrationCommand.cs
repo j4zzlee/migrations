@@ -13,7 +13,7 @@ namespace st2forget.migrations
         protected bool IsDown;
         protected IMigrationExecuter Executer;
 
-        protected MigrationCommand(IServiceProvider container, IMigrationExecuter executer) : base(container)
+        protected MigrationCommand(IMigrationExecuter executer) : base()
         {
             AddArgument("migration-path", "p", "Migration path");
             AddArgument("ticket", "t", "Ticket name", false, false, "\\d+\\-\\w+");

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +34,7 @@ namespace st2forget.migrations
                     runner.Execute();
                     return;
                 }
-
+                
                 runner = scope.ServiceProvider
                     .GetServices<ICommand>()
                     .FirstOrDefault(r => r.CommandName.Equals(command));
@@ -78,6 +79,8 @@ namespace st2forget.migrations
             services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             services.AddScoped<IMigrationExecuter, SqlMigrationExecuter>();
             services.AddScoped<ICommand, MigrateUpCommand>();
+            services.AddScoped<ICommand, CreateDatabaseCommand>();
+            services.AddScoped<ICommand, DropDatabaseCommand>();
             services.AddScoped<ICommand, MigrateDownCommand>();
             services.AddScoped<ICommand, GenerateMigrationCommand>();
             services.AddScoped(provider => new HelpListCommand(provider.GetServices<ICommand>().Where(c => !c.CommandName.Equals("commands:list")).ToList()));

@@ -17,7 +17,7 @@ namespace st2forget.migrations
 
         protected MigrationCommand(IMigrationExecuter executer) : base()
         {
-            AddArgument("application-path", "a", "Path to application which contains appsettings.json", true);
+            AddArgument("application-path", "a", "Path to application which contains appsettings.json");
             AddArgument("migration-path", "p", "Migration path");
             AddArgument("ticket", "t", "Ticket name", false, false, "\\d+\\-\\w+");
 
@@ -27,10 +27,8 @@ namespace st2forget.migrations
         protected override ICommand Filter()
         {
             Ticket = ReadArgument<string>("ticket");
-            ApplicationPath = ReadArgument<string>("application-path");
-            MigrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(
-                                AppContext.BaseDirectory,
-                                "Migrations");
+            ApplicationPath = ReadArgument<string>("application-path") ?? AppContext.BaseDirectory;
+            MigrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(AppContext.BaseDirectory, "Migrations");
             return this;
         }
 
@@ -43,13 +41,12 @@ namespace st2forget.migrations
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables();
             var configuration = builder.Build();
-            return configuration.GetConnectionString("MigrationDatabase");
+            return configuration.GetConnectionString("__MigrationDatabase");
         }
 
         protected override void OnExecute()
         {
             Executer.SetConnectionString(GetConnectionString());
-            Executer.Init();
             var migrationFileManager = new MigrationFileManager();
             var hasMigration = false;
             // Find Name Versions

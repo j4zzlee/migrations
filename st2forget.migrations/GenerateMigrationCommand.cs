@@ -1,10 +1,8 @@
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using st2forget.commons.datetime;
 using st2forget.console.utils;
 using st2forget.utils.commands;
-using st2forget.utils.sql;
 
 namespace st2forget.migrations
 {
@@ -37,16 +35,25 @@ namespace st2forget.migrations
             var time = DateTime.Now.ToUnixTimestamp();
             var migrationFile = Path.Combine(migrationPath, $"{time}-{_ticketName}.sql");
             File.Create(migrationFile).Dispose();
+            File.WriteAllText(migrationFile, $@"
+-- Name: {_ticketName}
+-- Date: {(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(time).ToLocalTime()}
+-- Author: {Environment.UserName}
+----------------------------
+-- Migration up goes here.
+----------------------------
+--Down--
+----------------------------
+-- Migration down goes here.
+----------------------------
+");
             $"[x] Generated {{f:Yellow}}{migrationFile}{{f:d}}".PrettyPrint(ConsoleColor.Green);
         }
 
         protected override ICommand Filter()
         {
             _version = ReadArgument<string>("version");
-
-            _migrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(
-                AppContext.BaseDirectory,
-                "Migrations");
+            _migrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(AppContext.BaseDirectory, "Migrations");
             _ticketName = ReadArgument<string>("ticket");
             return this;
         }

@@ -26,7 +26,7 @@ SELECT CASE
         SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_SCHEMA = 'dbo' 
-                 AND  TABLE_NAME = '{nameof(Migration)}'
+                 AND  TABLE_NAME = '__{nameof(Migration)}'
     )
     THEN (
         SELECT 1
@@ -43,9 +43,9 @@ END
                 return;
             }
             _sqlConnection
-                .Execute(@"
-CREATE TABLE [dbo].[Migration](
-	[Name] [varchar](50) NOT NULL,
+                .Execute($@"
+CREATE TABLE [dbo].[__{nameof(Migration)}](
+	[Name] [varchar](4000) NOT NULL,
 	[LastRun] [int] NOT NULL
 ) ON [PRIMARY]
 ");
@@ -60,7 +60,7 @@ CREATE TABLE [dbo].[Migration](
 
             _sqlConnection
                 .Execute($@"
-DELETE FROM [dbo].[{nameof(Migration)}]
+DELETE FROM [dbo].[__{nameof(Migration)}]
 WHERE Name = @Name
 ", new Migration
                 {
@@ -77,7 +77,7 @@ WHERE Name = @Name
 
             _sqlConnection
                 .Execute($@"
-INSERT INTO [dbo].[{nameof(Migration)}] ({typeof(Migration).GetDatabaseSchemas()}) 
+INSERT INTO [dbo].[__{nameof(Migration)}] ({typeof(Migration).GetDatabaseSchemas()}) 
 VALUES ({typeof(Migration).GetDatabaseValueSchemas()})
 ", new Migration
                 {
@@ -90,7 +90,7 @@ VALUES ({typeof(Migration).GetDatabaseValueSchemas()})
         {
             return _sqlConnection
                 .QueryFirstOrDefault<Migration>($@"
-SELECT TOP 1 * FROM [dbo].[{nameof(Migration)}] ORDER BY LastRun DESC, Name DESC
+SELECT TOP 1 * FROM [dbo].[__{nameof(Migration)}] ORDER BY LastRun DESC, Name DESC
 ");
         }
 
@@ -98,7 +98,7 @@ SELECT TOP 1 * FROM [dbo].[{nameof(Migration)}] ORDER BY LastRun DESC, Name DESC
         {
             return _sqlConnection
                        .QueryFirstOrDefault<Migration>($@"
-SELECT TOP 1 * FROM [dbo].[{nameof(Migration)}] 
+SELECT TOP 1 * FROM [dbo].[__{nameof(Migration)}] 
 WHERE [Name] = @Name
 ",
                            new

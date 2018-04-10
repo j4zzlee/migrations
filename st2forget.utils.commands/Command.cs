@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using st2forget.console.utils;
@@ -188,25 +187,33 @@ namespace st2forget.utils.commands
         public virtual void Help()
         {
             var commands = string.Empty;
-            foreach (var schema in Schemas)
+            if (Schemas != null)
             {
-                var name = string.IsNullOrWhiteSpace(schema.ShortName)
-                    ? $"-{schema.Name}"
-                    : $"-{schema.ShortName}|--{schema.Name}:<{schema.Name}>";
-
-                if (!schema.IsRequired)
+                foreach (var schema in Schemas)
                 {
-                    name = $"[{name}]";
+                    var name = string.IsNullOrWhiteSpace(schema.ShortName)
+                        ? $"-{schema.Name}"
+                        : $"-{schema.ShortName}|--{schema.Name}:<{schema.Name}>";
+
+                    if (!schema.IsRequired)
+                    {
+                        name = $"[{name}]";
+                    }
+                    commands += $" {name}";
                 }
-                commands += $" {name}";
             }
+            
             $"{{f:Green}}Command:{{f:d}} {CommandName} {commands}".PrettyPrint(ConsoleColor.White);
             $"{{f:Green}}Description:{{f:d}} {Description}".PrettyPrint(ConsoleColor.White);
-            foreach (var schema in Schemas)
+            if (Schemas != null)
             {
-                var isRequired = schema.IsRequired ? "{f:Red}Required{f:d}" : "";
-                $"\t{{f:Green}}{schema.ShortName}|{schema.Name}{{f:d}}{{t:30}}{isRequired}{{t:20}}{schema.Description}".PrettyPrint(ConsoleColor.White);
+                foreach (var schema in Schemas)
+                {
+                    var isRequired = schema.IsRequired ? "{f:Red}Required{f:d}" : "";
+                    $"\t{{f:Green}}{schema.ShortName}|{schema.Name}{{f:d}}{{t:30}}{isRequired}{{t:20}}{schema.Description}".PrettyPrint(ConsoleColor.White);
+                }
             }
+            
             @"
 {f:Yellow}*** Notes:{f:d}
     {f:Green}[{option}]{f:d}{t:40}The option is not required.

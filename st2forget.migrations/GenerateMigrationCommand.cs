@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using st2forget.commons.datetime;
 using st2forget.console.utils;
 using st2forget.utils.commands;
@@ -53,8 +54,12 @@ namespace st2forget.migrations
         protected override ICommand Filter()
         {
             _version = ReadArgument<string>("version");
-            _migrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(AppContext.BaseDirectory, "Migrations");
+            _migrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(Environment.CurrentDirectory, "Migrations");
             _ticketName = ReadArgument<string>("ticket");
+            if (!Regex.IsMatch(_ticketName, "^[a-zA-Z][0-9a-zA-Z-_]*", RegexOptions.IgnoreCase | RegexOptions.Multiline))
+            {
+                throw new Exception("Ticket name could only contains letters & numbers and begin with letters");
+            }
             return this;
         }
 

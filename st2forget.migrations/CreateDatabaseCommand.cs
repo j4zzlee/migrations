@@ -44,7 +44,7 @@ namespace st2forget.migrations
 
         protected override ICommand Filter()
         {
-            ApplicationPath = ReadArgument<string>("application-path") ?? AppContext.BaseDirectory;
+            ApplicationPath = ReadArgument<string>("application-path") ?? Environment.CurrentDirectory;
             return this;
         }
 

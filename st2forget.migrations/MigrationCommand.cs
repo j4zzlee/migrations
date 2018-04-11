@@ -27,8 +27,8 @@ namespace st2forget.migrations
         protected override ICommand Filter()
         {
             Ticket = ReadArgument<string>("ticket");
-            ApplicationPath = ReadArgument<string>("application-path") ?? AppContext.BaseDirectory;
-            MigrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(AppContext.BaseDirectory, "Migrations");
+            ApplicationPath = ReadArgument<string>("application-path") ?? Environment.CurrentDirectory;
+            MigrationPath = ReadArgument<string>("migration-path") ?? Path.Combine(Environment.CurrentDirectory, "Migrations");
             return this;
         }
 

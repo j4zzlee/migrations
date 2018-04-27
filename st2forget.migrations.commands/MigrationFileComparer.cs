@@ -8,6 +8,10 @@ namespace st2forget.migrations
     {
         public int Compare(string f1, string f2)
         {
+            if (f1 == f2)
+            {
+                return 0;
+            }
             if (string.IsNullOrWhiteSpace(f1) || string.IsNullOrWhiteSpace(f2))
             {
                 throw new ArgumentNullException($"Must provide not empty migration file");

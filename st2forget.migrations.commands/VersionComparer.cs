@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace st2forget.migrations
 {
@@ -7,6 +8,12 @@ namespace st2forget.migrations
     {
         public int Compare(string v1, string v2)
         {
+            if (v1 == v2)
+            {
+                return 0;
+            }
+            v1 = new DirectoryInfo(v1).Name;
+            v2 = new DirectoryInfo(v2).Name;
             if (string.IsNullOrWhiteSpace(v1))
             {
                 return -1;

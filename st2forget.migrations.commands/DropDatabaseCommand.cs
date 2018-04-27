@@ -56,7 +56,8 @@ namespace st2forget.migrations
             _connection = new SqlConnection(builder.ConnectionString);
             
             _connection.Open();
-            _connection.Execute($"DROP DATABASE {dataSource}");
+            _connection.Execute($@"ALTER DATABASE {dataSource} SET single_user WITH rollback immediate;
+DROP DATABASE {dataSource}");
             $@"The database {{f:Yellow}}""{dataSource}""{{f:d}} has been dropped.".PrettyPrint(ConsoleColor.Red);
         }
     }

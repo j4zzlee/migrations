@@ -34,7 +34,7 @@ namespace st2forget.migrations
 
         protected virtual string GetConnectionString()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var builder = new ConfigurationBuilder()
                 .SetBasePath(ApplicationPath)
                 .AddJsonFile("appsettings.json", true, true)

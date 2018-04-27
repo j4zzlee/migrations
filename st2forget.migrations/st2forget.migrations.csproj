@@ -2,10 +2,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>
     <PackageId>st2forget.migrations</PackageId>
     <AssemblyName>dotnet-migrations</AssemblyName>
-    <PackageVersion>2.0.5</PackageVersion>
+    <PackageVersion>2.0.7</PackageVersion>
     <Authors>Le Huu Hoang Gia</Authors>
     <Description>A command line tool for database migration (SQL Server) that uses raw sql.</Description>
     <Copyright>st2forget</Copyright>
@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\st2forget.commons.datetime\st2forget.commons.datetime.csproj" />
     <ProjectReference Include="..\st2forget.console.utils\st2forget.console.utils.csproj" />
+    <ProjectReference Include="..\st2forget.migrations.commands\st2forget.migrations.commands.csproj" />
     <ProjectReference Include="..\st2forget.utils.commands\st2forget.utils.commands.csproj" />
     <ProjectReference Include="..\st2forget.utils.sql\st2forget.utils.sql.csproj" />
   </ItemGroup>

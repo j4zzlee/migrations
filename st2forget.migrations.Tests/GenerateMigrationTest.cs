@@ -17,7 +17,7 @@ namespace st2forget.migrations.Tests
         private readonly IServiceCollection _serviceCollection;
         public GenerateMigrationTest()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Environment.CurrentDirectory)
                 .AddJsonFile("appsettings.json", true, true)
@@ -27,11 +27,6 @@ namespace st2forget.migrations.Tests
 
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddOptions();
-            //_serviceCollection.Configure<ConnectionSettings>(connectionSettings =>
-            //{
-            //    connectionSettings.ConnectionString = _configurationRoot.GetConnectionString("MigrationDatabase");
-            //});
-
             _serviceCollection.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             _serviceCollection.AddScoped<GenerateMigrationCommand>();
             _serviceCollection.AddScoped(provider => new HelpListCommand(provider.GetServices<ICommand>().Where(c => !c.CommandName.Equals("commands:list")).ToList()));

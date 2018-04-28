@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <OutputTypeEx>library</OutputTypeEx>
-    <PackageVersion>2.0.8</PackageVersion>
+    <PackageVersion>2.0.9</PackageVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 

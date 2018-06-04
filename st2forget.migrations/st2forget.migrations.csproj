@@ -3,33 +3,34 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <PackageId>st2forget.migrations</PackageId>
+    <PackageId>BCSolutions.Migrations.Tools</PackageId>
     <AssemblyName>dotnet-migrations</AssemblyName>
     <PackageVersion>2.0.9</PackageVersion>
-    <Authors>Le Huu Hoang Gia</Authors>
+    <Authors>Gia, Le Huu Hoang &lt;hoanggia.lh@gmail.com&gt;</Authors>
     <Description>A command line tool for database migration (SQL Server) that uses raw sql.</Description>
     <Copyright>st2forget</Copyright>
     <PackageTags>sql, migration</PackageTags>
     <PackageProjectUrl>https://github.com/st2forget/migrations</PackageProjectUrl>
     <PackageType>DotnetCliTool</PackageType>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/st2forget/migrations</RepositoryUrl>
+    <Company>BCSolutions</Company>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="dapper" Version="1.50.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.1" />
+    <PackageReference Include="BCSolutions.Commands" Version="1.0.0" />
+    <PackageReference Include="BCSolutions.ConsoleExtensions" Version="1.0.0" />
+    <PackageReference Include="BCSolutions.DateTimeExtensions" Version="1.0.0" />
+    <PackageReference Include="dapper" Version="1.50.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\st2forget.commons.datetime\st2forget.commons.datetime.csproj" />
-    <ProjectReference Include="..\st2forget.console.utils\st2forget.console.utils.csproj" />
     <ProjectReference Include="..\st2forget.migrations.commands\st2forget.migrations.commands.csproj" />
-    <ProjectReference Include="..\st2forget.utils.commands\st2forget.utils.commands.csproj" />
-    <ProjectReference Include="..\st2forget.utils.sql\st2forget.utils.sql.csproj" />
   </ItemGroup>
 </Project>

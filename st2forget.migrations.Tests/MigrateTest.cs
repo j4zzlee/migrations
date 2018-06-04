@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using st2forget.utils.commands;
-using st2forget.utils.sql;
+
+using DatabaseModelExtensions;
 using Xunit;
 using Dapper;
+using Commands;
 
 namespace st2forget.migrations.Tests
 {
@@ -22,8 +23,6 @@ namespace st2forget.migrations.Tests
         {
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddOptions();
-
-            _serviceCollection.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             _serviceCollection.AddScoped<IMigrationExecuter, SqlMigrationExecuter>();
             _serviceCollection.AddScoped<ICommand, MigrateUpCommand>();
             _serviceCollection.AddScoped<ICommand, MigrateDownCommand>();

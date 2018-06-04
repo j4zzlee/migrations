@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using st2forget.utils.commands;
-using st2forget.utils.sql;
+using Commands;
+using DatabaseModelExtensions;
 using Xunit;
 
 namespace st2forget.migrations.Tests
@@ -27,7 +27,6 @@ namespace st2forget.migrations.Tests
 
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddOptions();
-            _serviceCollection.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             _serviceCollection.AddScoped<GenerateMigrationCommand>();
             _serviceCollection.AddScoped(provider => new HelpListCommand(provider.GetServices<ICommand>().Where(c => !c.CommandName.Equals("commands:list")).ToList()));
 

@@ -1,5 +1,4 @@
 using System;
-using st2forget.utils.sql;
 
 namespace st2forget.migrations
 {

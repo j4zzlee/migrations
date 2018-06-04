@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 using System.IO;
 using Dapper;
 using Microsoft.Extensions.Options;
-using st2forget.commons.datetime;
-using st2forget.console.utils;
-using st2forget.utils.sql;
+using DateTimeExtensions;
+using ConsoleExtensions;
+using DatabaseModelExtensions;
 
 namespace st2forget.migrations
 {

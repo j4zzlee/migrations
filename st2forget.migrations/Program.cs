@@ -3,11 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Commands;
+using ConsoleExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using st2forget.console.utils;
-using st2forget.utils.commands;
-using st2forget.utils.sql;
 
 namespace st2forget.migrations
 {
@@ -77,7 +76,6 @@ namespace st2forget.migrations
         {
             var services = new ServiceCollection();
             services.AddOptions();
-            services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             services.AddScoped<IMigrationExecuter, SqlMigrationExecuter>();
             services.AddScoped<ICommand, MigrateUpCommand>();
             services.AddScoped<ICommand, CreateDatabaseCommand>();

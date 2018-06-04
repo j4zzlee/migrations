@@ -1,5 +1,5 @@
+using Commands;
 using System;
-using st2forget.utils.commands;
 
 namespace st2forget.migrations
 {

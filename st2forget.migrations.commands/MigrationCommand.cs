@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Threading;
 using Microsoft.Extensions.Configuration;
-using st2forget.console.utils;
-using st2forget.utils.commands;
+using ConsoleExtensions;
+using Commands;
 
 namespace st2forget.migrations
 {

@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using st2forget.commons.datetime;
-using st2forget.console.utils;
-using st2forget.utils.commands;
+using DateTimeExtensions;
+using ConsoleExtensions;
+using Commands;
 
 namespace st2forget.migrations
 {

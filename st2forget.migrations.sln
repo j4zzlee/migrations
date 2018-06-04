@@ -7,15 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.migrations", "st2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.migrations.Tests", "st2forget.migrations.Tests\st2forget.migrations.Tests.csproj", "{40EAD7E5-9CC2-4C2F-A304-F0FC71AC3AF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.commons.datetime", "st2forget.commons.datetime\st2forget.commons.datetime.csproj", "{53D7DD64-FCFB-4FCF-8EFA-328077A3D956}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.console.utils", "st2forget.console.utils\st2forget.console.utils.csproj", "{C299CA7C-4FC0-4165-A0B7-918143C42A32}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.utils.commands", "st2forget.utils.commands\st2forget.utils.commands.csproj", "{81D77EB3-755B-4F69-B976-3A79EF0E9A64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.utils.sql", "st2forget.utils.sql\st2forget.utils.sql.csproj", "{31A83BED-8F6D-4C38-9A37-4830B2E7008A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "st2forget.migrations.commands", "st2forget.migrations.commands\st2forget.migrations.commands.csproj", "{3633BF5B-1897-492A-BAB4-AE149492A28F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "st2forget.migrations.commands", "st2forget.migrations.commands\st2forget.migrations.commands.csproj", "{3633BF5B-1897-492A-BAB4-AE149492A28F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,22 +23,6 @@ Global
 		{40EAD7E5-9CC2-4C2F-A304-F0FC71AC3AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40EAD7E5-9CC2-4C2F-A304-F0FC71AC3AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40EAD7E5-9CC2-4C2F-A304-F0FC71AC3AF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53D7DD64-FCFB-4FCF-8EFA-328077A3D956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53D7DD64-FCFB-4FCF-8EFA-328077A3D956}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53D7DD64-FCFB-4FCF-8EFA-328077A3D956}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53D7DD64-FCFB-4FCF-8EFA-328077A3D956}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C299CA7C-4FC0-4165-A0B7-918143C42A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C299CA7C-4FC0-4165-A0B7-918143C42A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C299CA7C-4FC0-4165-A0B7-918143C42A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C299CA7C-4FC0-4165-A0B7-918143C42A32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81D77EB3-755B-4F69-B976-3A79EF0E9A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81D77EB3-755B-4F69-B976-3A79EF0E9A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81D77EB3-755B-4F69-B976-3A79EF0E9A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81D77EB3-755B-4F69-B976-3A79EF0E9A64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31A83BED-8F6D-4C38-9A37-4830B2E7008A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31A83BED-8F6D-4C38-9A37-4830B2E7008A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31A83BED-8F6D-4C38-9A37-4830B2E7008A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31A83BED-8F6D-4C38-9A37-4830B2E7008A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3633BF5B-1897-492A-BAB4-AE149492A28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3633BF5B-1897-492A-BAB4-AE149492A28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3633BF5B-1897-492A-BAB4-AE149492A28F}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,9 +3,8 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
-using st2forget.console.utils;
-using st2forget.utils.commands;
-using st2forget.utils.sql;
+using ConsoleExtensions;
+using Commands;
 
 namespace st2forget.migrations
 {
